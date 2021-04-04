@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Serverless Presentation</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+
+    <style>
+      .list-minus li,
+      .list-plus li {
+        position: relative;
+        list-style: none;
+      }
+      .list-minus li::after,
+      .list-plus li::after {
+        position: absolute;
+        top: 0;
+        left: -1em;
+      }
+      .list-minus li::after {
+        content: "-";
+      }
+      .list-plus li::after {
+        content: "+";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Serverless</h1>
+        </section>
+
+        <section>
+          <section>
+            <h2>What is/means Serverless?</h2>
+            <p class="fragment">
+              There does not seem to be a simple definition (it overlaps with
+              BaaS)
+            </p>
+            <p class="fragment">It's not a technology, it's an approach</p>
+            <p class="fragment">
+              FaaS (Function-as-a-Service) - backend service allowing writing
+              pieces of code that can be executed on certain events
+            </p>
+          </section>
+          <section>
+            <p>
+              Serveless != no server, there are still physical servers used, you
+              just do not care about the underlaying infrastructure
+            </p>
+            <p class="fragment">
+              Typical use cases: microservices architecture (serveless itself
+              does not mean microservices, it can be monolith as well),
+              startups, low budget projects
+            </p>
+          </section>
+          <section>
+            <ul class="list-plus">
+              <li>
+                we do not need to case about server at all, we just rent server
+                computations
+              </li>
+              <li>we pay only what we actually use</li>
+              <li>auto-scaling (great for insonsistent traffic)</li>
+              <li>saves time and increase productivity</li>
+              <li>quick deployment and updates</li>
+              <li>no infrastructure setup, configuration...</li>
+            </ul>
+          </section>
+          <section>
+            <ul class="list-minus">
+              <li>
+                cold start - might be up to 10s in AWS, but there's a workaround
+                mentioned, maybe not a big issue these days
+              </li>
+              <li>testing and debugging</li>
+              <li>security concerns</li>
+              <li>
+                not good for long running processes - execution time and memory
+                limits
+              </li>
+              <li>monitoring</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Example of nested vertical slides -->
+        <section>
+          <h2>Serverless Approach<br />vs<br />Serverless Framework</h2>
+        </section>
+
+        <section>
+          <h2>Serverless Framework</h2>
+          <p class="fragment">
+            popular and stable: npm 80k, github 32k<br />
+            regular updates
+          </p>
+          <p class="fragment">
+            open source (cli) and also paid version (monitoring, CI/CD...)
+          </p>
+          <p class="fragment">
+            easy deployment, local testing, support of multiple languages,
+            plugins available...
+          </p>
+        </section>
+
+        <section>
+          <h2>Popular Providers</h2>
+          <p>
+            AWS,<br />Microsoft Azure,<br />Google Cloud,<br />Alibaba Cloud...
+          </p>
+        </section>
+
+        <section>
+          <h2>AWS Services</h2>
+          <p><strong>Lambda</strong> - defining lambda functions</p>
+          <p>
+            <strong>API Gateway</strong> - define HTTP endpoints and methods,
+            trigger lambda functions, can handle also websockets
+          </p>
+          <p><strong>CloudWatch</strong> - monitoring, logs, alerts...</p>
+          <div class="fragment">
+            <hr />
+            <p>complicated</p>
+            <p>makes it difficult to migrate to another provider</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Lambda Function</h2>
+          <ul>
+            <li class="fragment">stateless function to do one thing</li>
+            <li class="fragment">runs in its own container</li>
+            <li class="fragment">
+              no visibility of the underlaying infrastructure
+            </li>
+            <li class="fragment">simple back-end code - quick development</li>
+          </ul>
+					<p class="fragment">
+            AWS Lambda free tier: 1,000,000 free requests per month, 400,000
+            seconds of compute time per month
+          </p>
+        </section>
+
+        <section>
+          <h2>AWS Lambda-Supportive Services</h2>
+          <ul>
+            <li>
+              <strong>AWS Event Bridge</strong> for communication between lambda
+              functions
+            </li>
+            <li><strong>AWS S3</strong> to store static assets</li>
+            <li><strong>AWS DynamoDB</strong> (NoSQL) for database</li>
+            <li><strong>AWS Cognito</strong> for authorization</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>AWS Fargate</h2>
+          <p>"severless containers"</p>
+        </section>
+
+        <section>
+          <h2>Resources</h2>
+          <p><a href="https://aws.amazon.com/">AWS</a></p>
+          <p><a href="https://www.serverless.com">Severless Framework</a></p>
+          <p>
+            <a href="https://martinfowler.com/articles/serverless.html"
+              >Serverless Architectures</a
+            >
+          </p>
+        </section>
+
+        <section data-transition="zoom" data-background="#4d7e65" data-background-transition="zoom">
+          <h2>Live Demo</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // Also available as an ES module, see:
+      // https://revealjs.com/initialization/
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealZoom,
+          RevealNotes,
+          RevealSearch,
+          RevealMarkdown,
+          RevealHighlight,
+        ],
+      });
+    </script>
+  </body>
+</html>
